@@ -64,6 +64,26 @@ body {
   text-align: left;
   background-color: #fff; }
 
+  .curved-background {
+    background: rgba(50, 50, 50, 0.8); /* Dark grey background with 80% opacity */
+    color: white; /* White text */
+    padding: 20px;
+    border-radius: 25px; /* Curved edges */
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Optional shadow for depth */
+  }
+  .curved-background-white{
+    background: rgba(224, 223, 223, 0.8); /* Dark grey background with 80% opacity */
+    color: white; /* White text */
+    padding: 20px;
+    border-radius: 25px; /* Curved edges */
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Optional shadow for depth */
+
+  }
+
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 
