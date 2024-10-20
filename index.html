@@ -147,7 +147,7 @@
     		<div class="row">
     			<div class="col-md-12 ftco-animate">
     				<div class="carousel-cause owl-carousel">
-	    				<div class="item" id="openPdfDiv">
+	    				<div class="item" id="">
 	    					<div class="cause-entry">
 		    					<a href="#" class="img" style="background-image: url(images/cause-1.jpg);"></a>
 		    					<div class="text p-3 p-md-4">
@@ -180,7 +180,7 @@
 		    					</div>
 		    				</div>
 	    				</div>
-	    				<div class="item">
+	    				<div class="item" id="schoolatwheelselement">
 	    					<div class="cause-entry">
 		    					<a href="#" class="img" style="background-image: url(images/cause-2.jpg);"></a>
 		    					<div class="text p-3 p-md-4">
@@ -200,7 +200,7 @@
 		    					</div>
 		    				</div>
 	    				</div>
-	    				<div class="item">
+	    				<div class="item" id="streetlightelement">
 	    					<div class="cause-entry">
 		    					<a href="#" class="img" style="background-image: url(images/cause-3.jpg);"></a>
 		    					<div class="text p-3 p-md-4">
@@ -667,11 +667,17 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-  <!-- <script>
-    document.getElementById("openPdfDiv").addEventListener("click", function() {
-      window.open("your-file.pdf", "_blank");
+  <script>
+    document.getElementById("streetlightelement").addEventListener("click", function() {
+      window.open(" pdfs/street_light_iwa.pdf", "_blank");
+      console.log("waterproject clickded")
     });
-  </script> -->
+    // schoolatwheelselement
+    document.getElementById("schoolatwheelselement").addEventListener("click", function() {
+      window.open(" pdfs/schoolatwheels_iwa.pdf", "_blank");
+      console.log("waterproject clickded")
+    });
+  </script>
     
   </body>
 </html>
