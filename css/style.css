@@ -83,6 +83,18 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Optional shadow for depth */
 
   }
+  .owl-carousel {
+    display: flex;
+    overflow-x: auto;  /* Allow horizontal scrolling */
+    scroll-snap-type: x mandatory;  /* Ensure smooth snapping */
+  }
+  
+  .owl-carousel .owl-item {
+    flex: 0 0 auto;  /* Make each item take up space horizontally */
+    scroll-snap-align: start;  /* Align items when scrolling */
+  }
+  
+
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }

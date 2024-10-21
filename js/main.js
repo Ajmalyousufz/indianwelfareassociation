@@ -42,29 +42,36 @@
 
 	var carousel = function() {
 		$('.carousel-cause').owlCarousel({
-			autoplay: true,
-			center: true,
-			loop: true,
-			items:1,
-			margin: 30,
-			stagePadding:0,
-			nav: true,
+			autoplay: true,        // Enables auto-scrolling
+			autoplayTimeout: 3000,  // Time between auto-scrolls (3 seconds)
+			autoplayHoverPause: true,  // Pauses on hover
+			loop: true,             // Allows infinite scrolling
+			items: 1,               // Number of items per slide
+			center: true,           // Centers the active item
+			margin: 30,             // Adds margin between items
+			nav: true,              // Displays navigation arrows
 			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
-			responsive:{
-				0:{
-					items: 1,
-					stagePadding: 0
-				},
-				600:{
-					items: 2,
-					stagePadding: 50
-				},
-				1000:{
-					items: 3,
-					stagePadding: 100
-				}
+			responsive: {
+			  0: {
+				items: 1,
+				stagePadding: 0
+			  },
+			  600: {
+				items: 2,
+				stagePadding: 50
+			  },
+			  1000: {
+				items: 3,
+				stagePadding: 100
+			  }
 			}
-		});
+		  });
+
+		  $('.owl-carousel').on('touchstart', function(e) {
+			$(this).css('overflow-y', 'auto');  // Allow vertical scrolling on touch devices
+		  });
+		  
+		  
 
 	};
 	carousel();
