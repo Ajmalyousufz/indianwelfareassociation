@@ -29,18 +29,23 @@ $quarternary: #7cbd1e;
     transition:         all $transition ease;
 }
 
-html {
-	// overflow-x: hidden;
-}
+// html {
+// 	// overflow-x: hidden;
+// }
+html, body {
+	height: 100%;
+	overflow-y: auto;
+  }
 body {
 	font-family: $font-primary;
 	background: $white;
 	font-size: 16px;
 	line-height: 1.8;
 	font-weight: 300;
+	overflow-y: auto;
 	color: lighten($black,50%);
 	&.menu-show {
-		overflow: hidden;
+		// overflow: hidden;
 		position: fixed;
 		height: 100%;
 		width: 100%;
@@ -611,6 +616,8 @@ h1, h2, h3, h4, h5,
 	&.owl-carousel .owl-stage-outer {
 	  padding-bottom: 2em;
 	  position: relative;
+	  -webkit-overflow-scrolling: touch;
+	  overflow-y: auto;
 	}
   
 	.cause-entry {
