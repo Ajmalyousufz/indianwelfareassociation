@@ -29,23 +29,18 @@ $quarternary: #7cbd1e;
     transition:         all $transition ease;
 }
 
-// html {
-// 	// overflow-x: hidden;
-// }
-html, body {
-	height: 100%;
-	overflow-y: auto;
-  }
+html {
+	// overflow-x: hidden;
+}
 body {
 	font-family: $font-primary;
 	background: $white;
 	font-size: 16px;
 	line-height: 1.8;
 	font-weight: 300;
-	overflow-y: auto;
 	color: lighten($black,50%);
 	&.menu-show {
-		// overflow: hidden;
+		overflow: hidden;
 		position: fixed;
 		height: 100%;
 		width: 100%;
@@ -373,7 +368,7 @@ h1, h2, h3, h4, h5,
 
 //OWL CAROUSEL
 .owl-carousel {
-	position: relative;
+	position: relative; touch-action: pan-y;
 	.owl-item {
 		opacity: .4;
 		&.active {
@@ -612,29 +607,12 @@ h1, h2, h3, h4, h5,
 
 
 //CAUSE
-.carousel-cause {
-	&.owl-carousel .owl-stage-outer {
-	  padding-bottom: 2em;
-	  position: relative;
-	  -webkit-overflow-scrolling: touch;
-	  overflow-y: auto;
+.carousel-cause{
+  &.owl-carousel .owl-stage-outer{
+		padding-bottom: 2em;
+		position: relative;touch-action: pan-y;
 	}
-  
-	.cause-entry {
-	  background: rgba(40, 40, 40, 0.7);  // Slightly transparent dark grey
-	  border: 1px solid lighten($black, 98%);
-	  box-shadow: 0px 3px 66px -24px rgba(0, 0, 0, 0.2);
-	  overflow: hidden;
-	  border-radius: 10px;  // Curved edges
-	}
-  
-	.text {
-	  background: rgba(255, 255, 255, 0.9);  // Light transparent background for text
-	  padding: 1.5em;
-	  border-radius: 8px;  // Curved edges on the text box
-	}
-  }
-  
+}
 .cause-entry{
 	background: $white;
 	border: 1px solid lighten($black,98%);

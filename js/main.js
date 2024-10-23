@@ -40,29 +40,7 @@ AOS.init({
 	// Scrollax
 	$.Scrollax();
 
-	const carouselContainer = document.querySelector('.carousel-containerr');
-	const items = document.querySelectorAll('.itemm');
-	let currentIndex = 0;
-	const itemWidth = items[0].clientWidth; // Get the width of the first item
-
-	// Auto-scroll function
-	function autoScroll() {
-		currentIndex++;
-
-		// If currentIndex exceeds the number of items, reset to 0
-		if (currentIndex >= items.length) {
-			currentIndex = 0; // Loop back to the first item
-		}
-
-		// Scroll to the current item
-		carouselContainer.scrollTo({
-			left: itemWidth * currentIndex, // Scroll to the next item
-			behavior: 'smooth' // Smooth scrolling effect
-		});
-	}
-
-	// Set the auto-scroll interval (adjust the timing as necessary)
-	setInterval(autoScroll, 3000); // Change to adjust the speed of scrolling
+	
 
 
 	var carousel = function () {
