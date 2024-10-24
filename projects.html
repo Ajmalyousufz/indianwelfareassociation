@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>iWA - projects</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,400i,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&family=Overpass:wght@400;600&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .dropdown-menu li {
+            position: relative;
+            display: block;
+        }
+
+        .dropdown-menu .dropdown-submenu {
+            display: block;
+            position: absolute;
+            left: 100%;
+            top: -7px;
+        }
+
+        .dropdown-menu .dropdown-menu-left {
+            right: 100%;
+            left: auto;
+        }
+
+        .dropdown-menu>li:hover>.dropdown-submenu {
+            display: block;
+        }
+
+        .navbar-nav li {
+            position: relative;
+            padding: 0.125rem;
+        }
+
+        .submenu {
+            position: absolute;
+            background-color: #6e6464c6;
+            color: #fff;
+            width: 220px;
+            left: 0;
+            display: none;
+        }
+
+        .submenu2 {
+            position: absolute;
+            left: 100%;
+            width: 220px;
+            top: 0;
+            background-color: #656565;
+            display: none;
+        }
+
+        .navbar-nav li:hover>.submenu {
+            display: block;
+        }
+
+        .submenu li:hover>.submenu2 {
+            display: block;
+        }
+
+        .navbar-nav a:hover {
+            background-color: #2fd196;
+            color: azure;
+        }
+
+        .owl-carousel {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .programme_name {
+            font-size: 3.rem;
+
+        }
+
+        .programme_desc {
+            font-size: 1.75rem;
+        }
+
+        /* Responsive styles */
+        @media (min-width: 1200px) {
+
+            .programme_name {
+                font-size: 3rem;
+            }
+
+            .programme_name:hover {
+                color: #2fd196;
+            }
+
+            .programme_desc {
+
+                font-size: 1.5rem;
+            }
+
+            .project_name {
+
+                font-size: 2.7rem;
+            }
+
+            .project_desc {
+
+                font-size: 1.2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                /* Medium screens */
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+
+            .programme_name {
+                font-size: 2.5rem;
+            }
+
+            .programme_name:hover {
+                color: #2fd196;
+            }
+
+            .programme_desc {
+
+                font-size: 1.25rem;
+            }
+
+            .project_name {
+
+                font-size: 2.4rem;
+            }
+
+            .project_desc {
+
+                font-size: 1.1rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+                /* Smaller screens */
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* h1 {
+                font-size: 2.1rem;
+                font-weight: 700;
+                /* Mobile devices */
+            /* } */
+
+            h2 {
+                font-size: 2rem;
+                /* Mobile devices */
+            }
+
+            .programme_name {
+                font-size: 2.2rem;
+            }
+
+            .programme_name:hover {
+                color: #2fd196;
+            }
+
+            .programme_desc {
+
+                font-size: 1.1rem;
+            }
+
+            .project_name {
+
+                font-size: 2.1rem;
+            }
+
+            .project_desc {
+
+                font-size: 1.0rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+                    /* Initially hide long description */
+        .long-description {
+            display: none;
+        }
+        .project {
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/iwa_logo.jpg" alt="IWA India Foundation" style="height: 70px; border-radius: 15px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.html" class="nav-link" style="color: #dadada">Home</a>
+                    </li>
+                    <li class="nav-item"><a href="about.html" class="nav-link" style="color: #dadada">About</a></li>
+
+
+                    <li class="nav-item"><a href="causes.html" class="nav-link" style="color: #dadada">Programmes</a>
+
+                        <ul class="submenu">
+
+                            <li><a href="" style="color: #fff;">
+                                    Education Empowerment Programme
+                                </a>
+                                <ul class="submenu2">
+                                    <li><a href="" style="color: #fff;">Hira Public School</a></li>
+                                    <li><a href="" style="color: #fff;">Edu Help</a></li>
+                                    <li><a href="" style="color: #fff;">IWA Scholership Desk</a></li>
+                                    <li><a href="" style="color: #fff;">School on Wheels</a></li>
+                                    <li><a href="" style="color: #fff;">Street Light</a></li>
+                                    <li><a href="" style="color: #fff;">Career guidance and counsellig cell</a></li>
+                                    <li><a href="" style="color: #fff;">Coaching Centre</a></li>
+                                    <li><a href="" style="color: #fff;">Academic Excellence Award</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="" style="color: #fff;">Livelihood and Family Support</a>
+                                <ul class="submenu2">
+                                    <li><a href="" style="color: #fff;">IWA Roof House</a></li>
+                                    <li><a href="" style="color: #fff;">Family Allowance</a></li>
+                                    <li><a href="" style="color: #fff;">Food Distribution</a></li>
+                                    <li><a href="" style="color: #fff;">Food Kit Distribution</a></li>
+                                    <li><a href="" style="color: #fff;">Widow pension</a></li>
+                                    <li><a href="" style="color: #fff;">Livelihood Support</a></li>
+                                    <li><a href="" style="color: #fff;">Dress Distribution</a></li>
+                                    <li><a href="" style="color: #fff;">Marriage Help</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="" style="color: #fff;">Health and Hygiene</a>
+                                <ul class="submenu2">
+                                    <li><a href="" style="color: #fff;">Pure Water Project</a></li>
+                                    <li><a href="" style="color: #fff;">Medical Camp</a></li>
+                                    <li><a href="" style="color: #fff;">Medi Help</a></li>
+                                    <li><a href="" style="color: #fff;">Awarness Classes</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li><a href="" style="color: #fff;">Community care and Support</a>
+                                <ul class="submenu2">
+                                    <li><a href="" style="color: #fff;">Orphan Care</a></li>
+                                    <li><a href="" style="color: #fff;">Care for diffrently Abled</a></li>
+                                    <li><a href="" style="color: #fff;">Old Age Caring</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li><a href="" style="color: #fff;">Seasonal Activities</a>
+                                <ul class="submenu2">
+                                    <li><a href="" style="color: #fff;">Blanket Distribution</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li><a href="" style="color: #fff;">Disaster Management</a>
+                                <ul class="submenu2">
+                                    <li><a href="" style="color: #fff;">Emergency Response: Relief Efforts During
+                                            Natural Disasters</a></li>
+                                    <li><a href="" style="color: #fff;">Covid-19 Activities</a></li>
+                                    <li><a href="" style="color: #fff;">Food Kit Distribution</a></li>
+                                    <li><a href="" style="color: #fff;">Hygiene kit Distribution</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="" style="color: #fff;">Cultuaral and Social Integration</a>
+                                <ul class="submenu2">
+                                    <li><a href="" style="color: #fff;">Natural Integration</a></li>
+                                    <li><a href="" style="color: #fff;">Day Observations</a></li>
+                                    <li><a href="" style="color: #fff;">Art and Cultuaral Festival</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item"><a href="donate.html" class="nav-link" style="color: #dadada">Donate</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link" style="color: #dadada">Blog</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link" style="color: #dadada">Gallery</a></li>
+                    <li class="nav-item"><a href="event.html" class="nav-link" style="color: #dadada">Events</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link" style="color: #dadada">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <div class="hero-wrap" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center"
+                data-scrollax-parent="true">
+                <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <!-- <h1 class="mb-4 curved-background" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Choosing to do nothing is not part of our journey</h1> -->
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">PROJECTS</h1>
+                    <!-- <p class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Created by <a href="#">Colorlib.com</a></p> -->
+
+                    <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a
+                            href="https://www.youtube.com/watch?v=WlxogjQ_Apg"
+                            class="btn btn-white btn-outline-white px-4 py-3 popup-vimeo">
+                            <!-- <span class="icon-play mr-2 curved-background"></span> -->
+                            <span class="icon-play mr-2"></span>
+                            Watch
+                            Video</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <h1 id="programme-title" class="my-4">Projects</h1>
+            <div id="projects-container" class="row">
+                <!-- Projects will be loaded here dynamically based on the selected programme -->
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        // Helper function to get query parameters from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Fetch the JSON data from 'programproject.json'
+        fetch('programproject.json')
+            .then(response => response.json())
+            .then(data => {
+                const selectedProgramme = getQueryParam('programme');  // Get programme name from URL
+                const programmeTitle = document.getElementById('programme-title');
+                const projectsContainer = document.getElementById('projects-container');
+
+                // Find the selected programme in the JSON data
+                const programmeData = data.Programmes.find(programme => programme.name === selectedProgramme);
+
+                // Check if programme exists
+                if (programmeData) {
+                    programmeTitle.innerText = `${programmeData.name} - Projects`; // Set title
+
+                    // Loop through the projects and display them
+                    programmeData.projects.forEach((project, index)  => {
+                        const projectHTML = `
+                            <div class="col-md-4 project">
+                                <div class="cause-entry">
+                                    <a href="#" class="img" style="background-image: url(images/cause-1.jpg);"></a>
+                                    <div class="text p-3 p-md-4 mb-3 mb-md-4">
+                                        <h3>${project.name}</h3>
+                                        <p class="short-description">${project.short_description}</p>
+                                        <p class="long-description" id="long-description-${index}">${project.long_description}</p>
+                                        <button class="btn btn-primary" onclick="toggleDescription(${index})" id="view-more-${index}">View More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        projectsContainer.innerHTML += projectHTML;
+                    });
+                } else {
+                    programmeTitle.innerText = "Programme not found.";
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching the JSON data:', error);
+            });
+
+                    // Function to toggle the long description visibility
+        function toggleDescription(index) {
+            const longDesc = document.getElementById(`long-description-${index}`);
+            const viewMoreButton = document.getElementById(`view-more-${index}`);
+
+            if (longDesc.style.display === "none" || longDesc.style.display === "") {
+                longDesc.style.display = "block";  // Show the long description
+                viewMoreButton.innerText = "View Less";  // Change button text
+            } else {
+                longDesc.style.display = "none";  // Hide the long description
+                viewMoreButton.innerText = "View More";  // Revert button text
+            }
+        }
+    </script>
+    <!-- Load jQuery -->
+    <script src="js/jquery.min.js"></script> <!-- (Keep this and remove the slim version) -->
+
+    <!-- Load Popper.js (Choose one, either local or CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <!-- Load Bootstrap JS (Choose one, either local or CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- Additional JS -->
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+
+    <!-- Google Maps API and Map JS -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
