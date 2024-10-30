@@ -39,6 +39,7 @@
       display: block;
     }
 
+
     .dropdown-menu .dropdown-submenu {
       display: block;
       position: absolute;
@@ -60,22 +61,32 @@
       padding: 0.125rem;
     }
 
-    .submenu {
-      position: absolute;
-      background-color: #6e6464c6;
-      color: #fff;
-      width: 220px;
-      left: 0;
+
+    /* .show-dropdown { */
+    /* display: block; */
+    /* Show dropdown when active */
+    /* } */
+
+    .rotate-arrow {
+      transform: rotate(180deg);
+      /* Rotate arrow when dropdown is open */
+    }
+
+
+    .submenu,
+    .submenu2 {
       display: none;
+      /* Hidden by default */
+      position: absolute;
+      background-color: #000000a8;
+      min-width: 160px;
+      z-index: 1;
     }
 
     .submenu2 {
-      position: absolute;
       left: 100%;
-      width: 220px;
+      /* Place the submenu2 to the right of submenu */
       top: 0;
-      background-color: #656565;
-      display: none;
     }
 
     .navbar-nav li:hover>.submenu {
@@ -86,6 +97,9 @@
       display: block;
     }
 
+
+
+
     .navbar-nav a:hover {
       background-color: #2fd196;
       color: azure;
@@ -95,13 +109,56 @@
       position: relative;
       overflow: visible !important;
     }
+
+    /* Ensure dropdown works well for mobile without layout overlap */
+    @media (max-width: 768px) {
+      .navbar-collapse {
+        position: relative;
+        z-index: 1000;
+        /* Ensure the dropdown stays on top */
+      }
+
+      .dropdown-menu {
+        position: relative;
+        z-index: 1001;
+        /* Dropdown is clickable without interference */
+      }
+    }
+
+    .upcoming-banner {
+      background: green;
+      /* Set background to green for upcoming events */
+      color: white;
+      /* Text color for better visibility */
+    }
+
+    .ongoing-banner {
+      background: blue;
+      /* You can customize this color as needed */
+      color: white;
+      /* Text color for better visibility */
+    }
+
+    .completed-banner {
+      background: red;
+      /* Red for completed events */
+      color: white;
+      /* Text color for better visibility */
+    }
+
+
+
+    /*  */
   </style>
 
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <!-- Navbar Placeholder -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="images/iwa_logo.jpg" alt="IWA India Foundation" style="height: 70px; border-radius: 15px;">
@@ -117,79 +174,13 @@
           <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 
 
-          <li class="nav-item"><a href="causes.html" class="nav-link">Programmes</a>
 
-            <ul class="submenu">
+          <li class="nav-item" id="programmes-menu"><a class="nav-link" id="programmes-toggle">Programmes<span
+                id="dropdown-arrow" style="margin-left: 10px;" class="">▼</span></a>
 
-              <li><a href="" style="color: #fff;">
-                  Education Empowerment Programme
-                </a>
-                <ul class="submenu2">
-                  <li><a href="" style="color: #fff;">Hira Public School</a></li>
-                  <li><a href="" style="color: #fff;">Edu Help</a></li>
-                  <li><a href="" style="color: #fff;">IWA Scholership Desk</a></li>
-                  <li><a href="" style="color: #fff;">School on Wheels</a></li>
-                  <li><a href="" style="color: #fff;">Street Light</a></li>
-                  <li><a href="" style="color: #fff;">Career guidance and counsellig cell</a></li>
-                  <li><a href="" style="color: #fff;">Coaching Centre</a></li>
-                  <li><a href="" style="color: #fff;">Academic Excellence Award</a></li>
-                </ul>
-              </li>
-              <li><a href="" style="color: #fff;">Livelihood and Family Support</a>
-                <ul class="submenu2">
-                  <li><a href="" style="color: #fff;">IWA Roof House</a></li>
-                  <li><a href="" style="color: #fff;">Family Allowance</a></li>
-                  <li><a href="" style="color: #fff;">Food Distribution</a></li>
-                  <li><a href="" style="color: #fff;">Food Kit Distribution</a></li>
-                  <li><a href="" style="color: #fff;">Widow pension</a></li>
-                  <li><a href="" style="color: #fff;">Livelihood Support</a></li>
-                  <li><a href="" style="color: #fff;">Dress Distribution</a></li>
-                  <li><a href="" style="color: #fff;">Marriage Help</a></li>
-                </ul>
-              </li>
-              
-              <li><a href="" style="color: #fff;">Health and Hygiene</a>
-                <ul class="submenu2">
-                  <li><a href="" style="color: #fff;">Pure Water Project</a></li>
-                  <li><a href="" style="color: #fff;">Medical Camp</a></li>
-                  <li><a href="" style="color: #fff;">Medi Help</a></li>
-                  <li><a href="" style="color: #fff;">Awarness Classes</a></li>
-                </ul>
-              </li>
+            <ul class="submenu" id="programmes-dropdown">
 
-              
-              <li><a href="" style="color: #fff;">Community care and Support</a>
-                <ul class="submenu2">
-                  <li><a href="" style="color: #fff;">Orphan Care</a></li>
-                  <li><a href="" style="color: #fff;">Care for diffrently Abled</a></li>
-                  <li><a href="" style="color: #fff;">Old Age Caring</a></li>
-                </ul>
-              </li>
-
-              
-              <li><a href="" style="color: #fff;">Seasonal Activities</a>
-                <ul class="submenu2">
-                  <li><a href="" style="color: #fff;">Blanket Distribution</a></li>
-                </ul>
-              </li>
-
-              
-              <li><a href="" style="color: #fff;">Disaster Management</a>
-                <ul class="submenu2">
-                  <li><a href="" style="color: #fff;">Emergency Response: Relief Efforts During Natural Disasters</a></li>
-                  <li><a href="" style="color: #fff;">Covid-19 Activities</a></li>
-                  <li><a href="" style="color: #fff;">Food Kit Distribution</a></li>
-                  <li><a href="" style="color: #fff;">Hygiene kit Distribution</a></li>
-                </ul>
-              </li>
-              
-              <li><a href="" style="color: #fff;">Cultuaral and Social Integration</a>
-                <ul class="submenu2">
-                  <li><a href="" style="color: #fff;">Natural Integration</a></li>
-                  <li><a href="" style="color: #fff;">Day Observations</a></li>
-                  <li><a href="" style="color: #fff;">Art and Cultuaral Festival</a></li>
-                </ul>
-              </li>
+              <div id="programmes-container"></div>
             </ul>
           </li>
 
@@ -202,7 +193,7 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
   <!-- <span class="dropdown">
   <!-- END nav -->
@@ -229,43 +220,7 @@
     </div>
   </div>
 
-  <section class="ftco-counter ftco-intro" id="section-counter">
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-md-5 d-flex justify-content-center counter-wrap ftco-animate">
-          <div class="block-18 color-1 align-items-stretch">
-            <div class="text">
-              <span>Served Over</span>
-              <strong class="number" data-number="3371276">0</strong>
-              <!-- Unparalleled steps of education charity social service -->
-              <span>Peoples in india</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-          <div class="block-18 color-2 align-items-stretch">
-            <div class="text">
-              <h3 class="mb-4">Donate Money</h3>
-              <p>Donate today to support scholar-led initiatives that ensure your contributions are used effectively and
-                transparently. Make a difference with your generosity!.</p>
-              <p><a href="#" class="btn btn-white px-3 py-2 mt-2">Donate Now</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-          <div class="block-18 color-3 align-items-stretch">
-            <div class="text">
-              <h3 class="mb-4">Be a Volunteer</h3>
-              <p>Join as a volunteer today under the guidance of dedicated scholars. Share your time and skills to
-                create a meaningful impact and be a part of positive change.
-                .</p>
-              <p><a href="#" class="btn btn-white px-3 py-2 mt-2">Be A Volunteer</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div id="don-val-banner-placeholder"></div>
 
   <section class="ftco-section">
     <div class="container">
@@ -334,7 +289,9 @@
             <!-- Item 1 -->
             <div class="item">
               <div class="cause-entry">
-                <a href="#" class="img" style="background-image: url('images/cause-2.JPG');"></a>
+
+                <a href="projects.html?programme=Health%20and%20Hygiene" class="img"
+                  style="background-image: url('images/cause-2.JPG');"></a>
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">Health and Hygiene</a></h3>
                   <!-- <p>Iwa Providing Relief to 6.25 Lacks+ People Through this programme.
@@ -352,7 +309,8 @@
             <!-- Item 2 -->
             <div class="item" id="schoolatwheelselement">
               <div class="cause-entry">
-                <a href="#" class="img" style="background-image: url('images/cause-1.jpg');"></a>
+                <a href="projects.html?programme=Education%20Empowerment%20Programme" class="img"
+                  style="background-image: url('images/cause-1.jpg');"></a>
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">Educational Embpowerment</a></h3>
                   <!-- <p>The School on Wheels project operates across four states, reaching 15 villages and 500 students
@@ -370,7 +328,8 @@
             <!-- Item 3 -->
             <div class="item" id="streetlightelement">
               <div class="cause-entry">
-                <a href="#" class="img" style="background-image: url('images/cause-3.jpg');"></a>
+                <a href="projects.html?programme=Livelihood%20and%20Family%20Support" class="img"
+                  style="background-image: url('images/cause-3.jpg');"></a>
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">Livelihood and Family Support</a></h3>
                   <!-- <p>The STREET LIGHT initiative provides educational resources in underprivileged areas, enhancing
@@ -388,7 +347,8 @@
             <!-- Item 4 -->
             <div class="item">
               <div class="cause-entry">
-                <a href="#" class="img" style="background-image: url('images/cause-4.jpg');"></a>
+                <a href="projects.html?programme=Community%20Care%20and%20Support" class="img"
+                  style="background-image: url('images/cause-4.jpg');"></a>
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">Community and Creative Support</a></h3>
                   <!-- <p>The IWA Food Distribution Project provides meals to millions in need, especially in Northeast
@@ -406,7 +366,8 @@
             <!-- Item 5 -->
             <div class="item">
               <div class="cause-entry">
-                <a href="#" class="img" style="background-image: url('images/cause-5.jpg');"></a>
+                <a href="projects.html?programme=Seasonal%20Activities" class="img"
+                  style="background-image: url('images/cause-5.jpg');"></a>
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">Seasonal Activities</a></h3>
                   <!-- <p>The IWA Community Water Project provides sustainable access to clean drinking water for underserved
@@ -424,7 +385,8 @@
             <!-- Item 6 -->
             <div class="item">
               <div class="cause-entry">
-                <a href="#" class="img" style="background-image: url('images/cause-6.jpg');"></a>
+                <a href="projects.html?programme=Disaster%20Management" class="img"
+                  style="background-image: url('images/cause-6.jpg');"></a>
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">Disaster Management</a></h3>
                   <!-- <p>The IWA Medical Help Initiative provides essential healthcare services, focusing on preventive care
@@ -442,7 +404,8 @@
             <!-- Item 7 -->
             <div class="item">
               <div class="cause-entry">
-                <a href="#" class="img" style="background-image: url('images/cause-7.jpg');"></a>
+                <a href="projects.html?programme=Cultural%20and%20Social%20Integration" class="img"
+                  style="background-image: url('images/cause-7.jpg');"></a>
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">Cultuaral and Social Integration</a></h3>
                   <!-- <p>The IWA Education Help Program offers resources and tutoring to underserved students, promoting
@@ -615,7 +578,7 @@
     </div>
 
     <div style="width: 100%;">
-      <p><a href="#" style="float: right; padding-right: 10px;">View all>></a></p>
+      <p><a href="gallery.html" style="float: right; padding-right: 10px;">View all>></a></p>
     </div>
 
   </section>
@@ -626,56 +589,16 @@
       <div class="row justify-content-center mb-5 pb-3">
         <div class="col-md-7 heading-section ftco-animate text-center">
           <h2 class="mb-4">Recent from blog</h2>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-            blind texts.</p>
+          <p>Explore insights and updates on IWA India Foundation's impactful community initiatives, highlighting
+            stories of growth, educational programs, environmental efforts, and more.</p>
         </div>
       </div>
       <div class="row d-flex">
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">Sept 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mt-3"><a href="#">Hurricane Irma has devastated Florida</a></h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-            </div>
-          </div>
+        <div id="recent-main-blogs-container" class="row"></div>
+        <div style="width: 100%;">
+          <p><a href="blog.html" style="float: right; padding-right: 10px;">View all>></a></p>
         </div>
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">Sept 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mt-3"><a href="#">Hurricane Irma has devastated Florida</a></h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">Sept 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mt-3"><a href="#">Hurricane Irma has devastated Florida</a></h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -688,193 +611,77 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/event-1.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">Sep. 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mb-4"><a href="#">World Wide Donation</a></h3>
-              <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i> 10:30AM-03:30PM</span> <span><i
-                    class="icon-map-o"></i> Venue Main Campus</span></p>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
-            </div>
-          </div>
+        <div id="events-container" class="row">
+          <!-- Event entries will be dynamically inserted here -->
         </div>
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/event-2.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">Sep. 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mb-4"><a href="#">World Wide Donation</a></h3>
-              <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i> 10:30AM-03:30PM</span> <span><i
-                    class="icon-map-o"></i> Venue Main Campus</span></p>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
-            </div>
-          </div>
+        <div style="width: 100%;">
+          <p><a href="event.html" style="float: right; padding-right: 10px;">View all>></a></p>
         </div>
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/event-3.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">Sep. 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mb-4"><a href="#">World Wide Donation</a></h3>
-              <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i> 10:30AM-03:30PM</span> <span><i
-                    class="icon-map-o"></i> Venue Main Campus</span></p>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
-            </div>
-          </div>
-        </div>
+
       </div>
+    </div>
     </div>
   </section>
 
-  <section class="ftco-section-3 img" style="background-image: url(images/bg_3.jpg);">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row d-md-flex">
-        <div class="col-md-6 d-flex ftco-animate">
-          <div class="img img-2 align-self-stretch" style="background-image: url(images/cause-31.jpg);"></div>
-        </div>
-        <div class="col-md-6 volunteer pl-md-5 ftco-animate">
-          <h3 class="mb-3">Be a volunteer</h3>
-          <form action="#" class="volunter-form">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Email">
-            </div>
-            <div class="form-group">
-              <textarea name="" id="" cols="30" rows="3" class="form-control" placeholder="Message"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-white py-3 px-5">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <footer class="ftco-footer ftco-section img">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row mb-5">
-        <div class="col-md-3">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">About Us</h2>
-            <p>IWA INDIA FOUNATION , a non-governmental organisation founded by Dr PA Muhammed Farooq Naeemi in 2013,
-              have set new standards in the field of charity work. IWA, since its inception, have been tirelessly
-              working to ameliorate the living conditions of the people belonging to underprivileged and marginalised
-              communities in India.</p>
-            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Recent Blog</h2>
-            <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-              <div class="textt">
-                <p class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-              <div class="textt">
-                <p class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></p>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="ftco-footer-widget mb-4 ml-md-4">
-            <h2 class="ftco-heading-2">Site Links</h2>
-            <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Home</a></li>
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Donate</a></li>
-              <li><a href="#" class="py-2 d-block">Causes</a></li>
-              <li><a href="#" class="py-2 d-block">Event</a></li>
-              <li><a href="#" class="py-2 d-block">Blog</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Have a Questions?</h2>
-            <div class="block-23 mb-3">
-              <ul>
-                <li><span class="icon icon-map-marker"></span><span class="textt">IWA INDIA FOUNDATION
-                    C IN : U80902KL2021NPL073025
-                    CSR NO : SRN-F59507681
-                    12AA, 80G CERTIFIED
-                    IWA COACHING CENTER
-                    NEAR CHINNAKADA JUMA MASJID
-                    KOLLAM, KERALA PIN:691001</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="textt">+918086660088</span></a></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="textt">+918523000111</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span
-                      class="textt">iwaindiafoundation@gmail.com</span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 text-center">
+  <div id="valuanteer-placeholder"></div>
 
-          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="icon-heart"
-              aria-hidden="true"></i>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-
-
+  <div id="footbar-placeholder"></div>
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
       <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
       <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
         stroke="#F96D00" />
     </svg></div>
+
+  <!-- <script>
+    // Fetch JSON data from projects.json
+    fetch('programproject.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('programmes-container');
+
+        data.Programmes.forEach(programme => {
+
+          console.log(`program name : ${programme.name}`);
+          let programmeHTML = `<li><a style="color: #fff;"> ${programme.name}</a><ul class="submenu2">`;
+          programme.projects.forEach(project => {
+
+            const programmeParam = encodeURIComponent(programme.name);
+            const projectParam = encodeURIComponent(project.name);
+            const projectLink = `projects.html?programme=${programmeParam}&project=${projectParam}`;
+
+
+            console.log(`project name : ${project.name}`);
+            // Add each project link with URL parameters
+            programmeHTML += `<li><a href="${projectLink}" style="color: #fff;">${project.name}</a></li>`;
+          });
+
+          programmeHTML += `</ul></li>`;
+          container.innerHTML += programmeHTML;
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching the JSON data:', error);
+      });
+
+    // Toggle display of the dropdown menu on "Programmes" click
+    document.getElementById('programmes-toggle').addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
+
+      const dropdownMenu = document.getElementById('programmes-dropdown');
+
+      // Toggle display
+      if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+        dropdownMenu.style.display = 'block';
+      } else {
+        dropdownMenu.style.display = 'none';
+      }
+    });
+  </script> -->
+
+
+
   <!-- Load jQuery -->
   <script src="js/jquery.min.js"></script> <!-- (Keep this and remove the slim version) -->
 
@@ -909,62 +716,8 @@
   <!-- Main JS -->
   <script src="js/main.js"></script>
 
-  <script>
+  <script src="js/iwascripts.js"></script>
 
-  </script>
-
-  <!-- controlling script for vertical and horizontal scroll -->
-  <script>
-
-    let startX, startY, isScrolling, resetTimeout;
-
-
-    const carousel = document.querySelector('.owl-carousel');
-
-    carousel.addEventListener('touchstart', function (e) {
-      console.log('Touch Stated');
-      startX = e.touches[0].pageX;
-      startY = e.touches[0].pageY;
-      isScrolling = undefined;  // Reset scrolling direction
-
-      clearTimeout(resetTimeout);
-    });
-
-    carousel.addEventListener('touchmove', function (e) {
-      console.log('Touch move');
-      const dx = e.touches[0].pageX - startX;
-      const dy = e.touches[0].pageY - startY;
-
-      // Determine if scrolling is mostly vertical or horizontal
-      if (isScrolling === undefined) {
-        console.log('scrolling');
-        isScrolling = Math.abs(dy) > Math.abs(dx);
-      }
-
-      if (isScrolling) {
-
-        console.log('vertical scrolling');
-        // If scrolling is vertical, let the page scroll
-        //e.stopPropagation();
-        carousel.style.pointerEvents = 'none';
-
-        resetTimeout = setTimeout(function () {
-          console.log('reset scrolling');
-          carousel.style.pointerEvents = 'auto';
-        }, 2000);
-
-      } else {
-        carousel.style.pointerEvents = 'auto';
-      }
-    });
-
-    // carousel.addEventListener('touchend', function(){
-    //   console.log('Touch ended');
-    //   carousel.style.pointerEvents = 'auto';
-    //   clearTimeout(resetTimeout);
-    // });
-    // , { passive: true });
-  </script>
 
 </body>
 
