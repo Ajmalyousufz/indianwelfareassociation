@@ -356,10 +356,10 @@
                         const projectHTML = `
                             <div class="col-md-4 project" id="project-${index}">
                                 <div class="cause-entry">
-                                    <a href="#" class="img" style="background-image: url(images/cause-1.jpg);"></a>
+                                    <a href="#" class="img" style="background-image: url(${project.image});"></a>
                                     <div class="text p-3 p-md-4 mb-3 mb-md-4">
                                         <h3>${project.name}</h3>
-                                        <p class="short-description">${project.description}</p>
+                                        <p class="short-description">${project.short_description}</p>
                                         <p class="long-description" id="long-description-${index}">${project.long_description}</p>
                                     </div>
                                 </div>
