@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     data.Programmes.forEach(programme => {
 
                         console.log(`program name : ${programme.name}`);
-                        let programmeHTML = `<li><a style="color: #fff;"> ${programme.name}</a><ul class="submenu2">`;
+                        let programmeHTML = `<li><a style="color: #fff;">• ${programme.name}</a><ul class="submenu2">`;
                         programme.projects.forEach(project => {
 
                             const programmeParam = encodeURIComponent(programme.name);
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             console.log(`project name : ${project.name}`);
                             // Add each project link with URL parameters
-                            programmeHTML += `<li><a href="${projectLink}" style="color: #fff;">${project.name}</a></li>`;
+                            programmeHTML += `<li><a href="${projectLink}" style="color: #fff;">• ${project.name}</a></li>`;
                         });
 
                         programmeHTML += `</ul></li>`;

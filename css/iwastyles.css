@@ -110,7 +110,39 @@
     /* Text color for better visibility */
 }
 
+/* Align items in a row */
+.submenu li, .submenu2 li {
+    display: block;
+    padding: 10px;
+    white-space: nowrap;
+}
+
 .ftco-animate {
     opacity: 1 !important;
     visibility: visible !important;
-}
+  }
+
+  .blurred-bg {
+    position: relative;
+    display: inline-block;
+    padding: 15px 25px;
+    color: white;
+    text-align: center;
+  }
+
+  .blurred-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: blur(10px);
+    /* Blur effect for soft edges */
+    border-radius: 20px;
+    z-index: -1;
+    /* Ensures it stays behind the text */
+    padding: 20px;
+  }
+
