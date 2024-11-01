@@ -390,12 +390,18 @@ function sendEmail() {
     const userName = document.getElementById("user_name").value;
     const userEmail = document.getElementById("user_email").value;
     const message = document.getElementById("message").value;
+    const subject = document.getElementById("subject").value; // Read the subject from the hidden field
 
     // Encode email content
-    const subject = encodeURIComponent("Volunteer Request");
+    const encodedSubject = encodeURIComponent(subject);
     const body = encodeURIComponent(`Name: ${userName}\nEmail: ${userEmail}\nMessage: ${message}`);
 
     // Open user's default mail client with pre-filled information
-    window.location.href = `mailto:ajmalyousufza@gmail.com?subject=${subject}&body=${body}`;
-  }
+    window.location.href = `mailto:ajmalyousufza@gmail.com?subject=${encodedSubject}&body=${body}`;
+}
+
+
+function noEditAlert() {
+    alert("This field cannot be edited. Please fill in the other fields and send the form.");
+}
 

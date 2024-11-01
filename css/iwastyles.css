@@ -111,7 +111,8 @@
 }
 
 /* Align items in a row */
-.submenu li, .submenu2 li {
+.submenu li,
+.submenu2 li {
     display: block;
     padding: 10px;
     white-space: nowrap;
@@ -120,17 +121,17 @@
 .ftco-animate {
     opacity: 1 !important;
     visibility: visible !important;
-  }
+}
 
-  .blurred-bg {
+.blurred-bg {
     position: relative;
     display: inline-block;
     padding: 15px 25px;
     color: white;
     text-align: center;
-  }
+}
 
-  .blurred-bg::before {
+.blurred-bg::before {
     content: '';
     position: absolute;
     top: 0;
@@ -144,6 +145,43 @@
     z-index: -1;
     /* Ensures it stays behind the text */
     padding: 20px;
-  }
-  
+}
 
+.hero-wrap {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    min-height: 80vh;
+    /* Default height for larger screens */
+}
+
+
+
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Dark overlay for text readability */
+}
+
+.hero-wrap h1 {
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .hero-wrap h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-wrap h1 {
+        font-size: 3.5rem;
+    }
+}
+
+.hero-wrap .btn {
+    color: #fff;
+    border-color: #fff;
+}

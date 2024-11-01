@@ -1,0 +1,283 @@
+{
+    "INJK": {
+      "name": "Jammu and Kashmir",
+      "districts": [
+        {
+          "name": "Poonch",
+          "areas": ["Sanai", "Surankot"]
+        }
+      ],
+      "urbanAreas": ["Jammu City"]
+    },
+    "INPB": {
+      "name": "Punjab",
+      "districts": [
+        {
+          "name": "Ludhiana",
+          "areas": ["Ludhiana (Not Village name)"]
+        }
+      ],
+      "urbanAreas": ["Amritsar", "Patiala"]
+    },
+    "INHR": {
+      "name": "Haryana",
+      "districts": [
+        {
+          "name": "Mewat",
+          "areas": ["Bichore"]
+        }
+      ],
+      "urbanAreas": ["Gurgaon", "Faridabad"]
+    },
+    "INDL": {
+      "name": "Delhi",
+      "districts": [
+        {
+          "name": "Central Delhi",
+          "areas": ["Dariyaganj"]
+        }
+      ],
+      "urbanAreas": ["Connaught Place", "Chandni Chowk"]
+    },
+    "INUT": {
+      "name": "Uttarakhand",
+      "districts": [
+        {
+          "name": "Udam Singh Nagar",
+          "areas": ["Darau", "Kuraiya"]
+        }
+      ],
+      "urbanAreas": ["Dehradun", "Haridwar"]
+    },
+    "INUP": {
+      "name": "Uttar Pradesh",
+      "districts": [
+        {
+          "name": "Rampur",
+          "areas": ["Rampur", "Bareilly", "Pilibhit", "Hathras"]
+        },
+        {
+          "name": "Lucknow",
+          "areas": ["Aishbag", "Imambara", "Alambagh", "Jalalabad", "Nawabganj"]
+        }
+      ],
+      "urbanAreas": ["Kanpur", "Agra", "Varanasi", "Meerut"]
+    },
+    "INBR": {
+      "name": "Bihar",
+      "districts": [
+        {
+          "name": "Kishanganj",
+          "areas": ["Mariya", "Bavan Basthi"]
+        },
+        {
+          "name": "Gaya",
+          "areas": ["Gaya City"]
+        },
+        {
+          "name": "Madhubani",
+          "areas": ["Bas Beriya", "Bakariyya"]
+        },
+        {
+          "name": "Katihar",
+          "areas": ["Jahanjahpur"]
+        },
+        {
+          "name": "Purnia",
+          "areas": ["Barsoi"]
+        }
+      ],
+      "urbanAreas": ["Patna", "Bhagalpur", "Muzaffarpur"]
+    },
+    "INJH": {
+      "name": "Jharkhand",
+      "districts": [
+        {
+          "name": "Cooda",
+          "areas": ["Urban Block"]
+        }
+      ],
+      "urbanAreas": ["Ranchi", "Dhanbad"]
+    },
+    "INOR": {
+      "name": "Odisha",
+      "districts": [
+        {
+          "name": "Jagatsinghapur",
+          "areas": ["Jagatsingapur"]
+        },
+        {
+          "name": "Jajpur",
+          "areas": ["Korai"]
+        },
+        {
+          "name": "Bhadrak",
+          "areas": ["Bhadrak"]
+        },
+        {
+          "name": "Balasore",
+          "areas": ["Balasor"]
+        },
+        {
+          "name": "Puri",
+          "areas": ["Puri City"]
+        }
+      ],
+      "urbanAreas": ["Bhubaneswar", "Cuttack"]
+    },
+    "INWB": {
+      "name": "West Bengal",
+      "districts": [
+        {
+          "name": "Malda",
+          "areas": ["Samsi"]
+        },
+        {
+          "name": "Birbhum",
+          "areas": ["Manjikhanda"]
+        },
+        {
+          "name": "Darjeeling",
+          "areas": ["Lebong"]
+        },
+        {
+          "name": "Alipurduar",
+          "areas": ["Chaniyabasthi"]
+        },
+        {
+          "name": "Uttar Dinajpur",
+          "areas": ["Islampur", "Kokobasthi"]
+        },
+        {
+          "name": "Purulia",
+          "areas": ["Harigram"]
+        },
+        {
+          "name": "North 24 Parganas",
+          "areas": ["Suraj Colony", "Lenin Colony"]
+        },
+        {
+          "name": "Siliguri",
+          "areas": ["Fulbari", "Golpukur"]
+        },
+        {
+          "name": "Jalpaiguri",
+          "areas": ["Agu Rasiya"]
+        }
+      ],
+      "urbanAreas": ["Kolkata", "Howrah"]
+    },
+    "INAS": {
+      "name": "Assam",
+      "districts": [
+        {
+          "name": "Karimganj",
+          "areas": ["Karimganj City"]
+        },
+        {
+          "name": "Nalbari",
+          "areas": ["Nilbari"]
+        }
+      ],
+      "urbanAreas": ["Guwahati", "Silchar"]
+    },
+    "INMN": {
+      "name": "Manipur",
+      "districts": [
+        {
+          "name": "Jiribam",
+          "areas": ["Jiribam Village"]
+        },
+        {
+          "name": "Imphal West",
+          "areas": ["Aglapur", "Chandranathpur"]
+        }
+      ],
+      "urbanAreas": ["Imphal"]
+    },
+    "INTR": {
+      "name": "Tripura",
+      "districts": [
+        {
+          "name": "Sepahijala",
+          "areas": ["Bishalgarh"]
+        }
+      ],
+      "urbanAreas": ["Agartala"]
+    },
+    "INGJ": {
+      "name": "Gujarat",
+      "districts": [
+        {
+          "name": "West Gujarat",
+          "areas": ["Rajkot", "Bhavnagar"]
+        }
+      ],
+      "urbanAreas": ["Ahmedabad", "Surat", "Vadodara"]
+    },
+    "INRJ": {
+      "name": "Rajasthan",
+      "districts": [
+        {
+          "name": "Ajmer",
+          "areas": ["Kayampura", "Kayad"]
+        },
+        {
+          "name": "Barmer",
+          "areas": ["Gadra Road", "Jaisindhar"]
+        }
+      ],
+      "urbanAreas": ["Jaipur", "Udaipur", "Jodhpur"]
+    },
+    "INKA": {
+      "name": "Karnataka",
+      "districts": [
+        {
+          "name": "Bangalore Urban District",
+          "areas": ["Halasuru"]
+        },
+        {
+          "name": "Kolar",
+          "areas": ["Kolar Town"]
+        }
+      ],
+      "urbanAreas": ["Bengaluru", "Mysore"]
+    },
+    "INKL": {
+      "name": "Kerala",
+      "districts": [
+        {
+          "name": "Kollam",
+          "areas": ["Mayyithumkara"]
+        },
+        {
+          "name": "Idukki",
+          "areas": ["Idukki Town"]
+        },
+        {
+          "name": "Wayanad",
+          "areas": ["Wayanad Village"]
+        },
+        {
+          "name": "Thiruvananthapuram",
+          "areas": ["Peringamala"]
+        }
+      ],
+      "urbanAreas": ["Kochi", "Thiruvananthapuram"]
+    },
+    "INTN": {
+      "name": "Tamil Nadu",
+      "districts": [
+        {
+          "name": "Kanyakumari",
+          "areas": ["Kanyakumari City"]
+        },
+        {
+          "name": "Coimbatore",
+          "areas": ["Pollachi"]
+        }
+      ],
+      "urbanAreas": ["Chennai", "Madurai", "Tiruchirappalli"]
+    }
+  }
+  

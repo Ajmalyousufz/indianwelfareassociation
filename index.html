@@ -47,7 +47,7 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      
+
       width: auto;
       background-color: rgba(254, 188, 188, 0.9);
       padding: 15px;
@@ -251,28 +251,36 @@
   <section class="ftco-section bg-light p-0">
     <div class="container-fluid">
       <div class="row justify-content-center mb-5 pb-3">
-        <div class="col-md-5 heading-section ftco-animate text-center">
+        <div class="col-md-8 heading-section ftco-animate text-center mx-auto">
           <div class="container mt-5">
-            <div class="container mt-5">
-              <h2 class="mb-4">Our Regional Impact
-              </h2>
+            <h2 class="mb-4">Our Regional Impact</h2>
+            <p>Our presence spans regions across India, with active projects and initiatives reaching urban and rural
+              communities in each state. Explore our network across the North, East, West, and South zones, highlighting
+              both vibrant urban centers and vital rural areas where we are making a difference.</p>
+
+            <div class="state_count d-flex justify-content-center gap-3 mt-4" style="flex-wrap: wrap; width: 100%;">
+              <div class="p-2 text-center"
+                style="background-color: #9c5e02; color: #fff; font-size: 0.9rem; flex-basis: 30%; white-space: nowrap;">
+                States (including North, East, West, South zones): 19
+              </div>
+              <div class="p-2 text-center"
+                style="background-color: #9b9b9b; color: #fff; font-size: 0.9rem; flex-basis: 30%; white-space: nowrap;">
+                Districts (all states combined): 44
+              </div>
+              <div class="p-2 text-center"
+                style="background-color: #2e9c02; color: #fff; font-size: 0.9rem; flex-basis: 30%; white-space: nowrap;">
+                Urban Areas (all states combined): 98
+              </div>
             </div>
           </div>
-          <p>Our presence spans regions across India, with active projects and initiatives reaching urban and rural
-            communities in each state. Explore our network across the North, East, West, and South zones, highlighting
-            both vibrant urban centers and vital rural areas where we are making a difference.</p>
         </div>
       </div>
+
+
       <!-- <div class="row"> -->
       <div class="row">
         <div class="col-md-12 ftco-animate">
           <div class="map-container">
-            <div class="state_count" style="width: 70%;">
-              <div class="p-2" style="background-color: #9c5e02; font-size: 0.9rem; ;"><a style="color: #fff" href=""> States (including
-                  North, East, West, South zones): 19</a></div>
-              <div class="p-2" style="background-color: #9b9b9b; font-size: 0.9rem"><a style="color: #fff" href=""> Districts (all states combined): 44</a></div>
-              <div class="p-2" style="background-color: #2e9c02;font-size: 0.9rem"><a style="color: #fff" href=""> Urban Areas (all states combined): 98</a></div>
-            </div>
             <!-- Inline SVG content here -->
             <svg id="india-map" baseprofile="tiny" fill="#8C92AC" height="auto" stroke="#ffffff" stroke-linecap="round"
               xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 1000" width="auto">
@@ -1196,22 +1204,31 @@
       }
 
       function hideInfo() {
-        overlay.style.display = "none";
+        overlay.style.display = "block";
       }
 
-      Object.keys(stateData).forEach(stateId => {
-        const stateElement = document.getElementById(stateId);
-        if (stateElement) {
-          stateElement.classList.add("state");
+      // Fetch data from stateData.json and use it in your application
+      fetch('stateData.json')
+        .then(response => response.json())  // Parse JSON response
+        .then(data => {
+          // Now `data` contains the parsed JSON from stateData.json
+          Object.keys(data).forEach(stateId => {
+            const stateElement = document.getElementById(stateId);
+            if (stateElement) {
+              stateElement.classList.add("state");
 
-          stateElement.addEventListener("mouseenter", () => {
-            const state = stateData[stateId];
-            showInfo(state.name, state.districts, state.urbanAreas);
+              // Event listeners for displaying and hiding information
+              stateElement.addEventListener("mouseenter", () => {
+                const state = data[stateId];
+                showInfo(state.name, state.districts, state.urbanAreas);
+              });
+
+              stateElement.addEventListener("mouseleave", hideInfo);
+            }
           });
+        })
+        .catch(error => console.error('Error fetching state data:', error));
 
-          stateElement.addEventListener("mouseleave", hideInfo);
-        }
-      });
     });
   </script>
 
