@@ -33,8 +33,8 @@
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/iwastyles.css">
-
   <style>
+    /* Main Map Container */
     .map-container {
       position: relative;
       width: 50%;
@@ -42,72 +42,93 @@
     }
 
     .info-overlay {
-      display: flex;
-      flex-direction: row;
       position: absolute;
-      top: 10px;
-      right: 10px;
-
-      width: auto;
       background-color: rgba(254, 188, 188, 0.9);
       padding: 15px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-    }
-
-    /* Ensure dropdown works well for mobile without layout overlap */
-    @media (max-width: 768px) {
-      .map-container {
-        position: relative;
-        width: 110%;
-        margin: auto;
-      }
-
-      .info-overlay {
-        display: flex;
-        flex-direction: row;
-        position: relative;
-        top: 10px;
-        right: 10px;
-        width: auto;
-        background-color: rgba(254, 188, 188, 0.9);
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-      }
+      z-index: 9999;
+      /* Ensure it's on top of other content */
+      display: none;
+      /* Hidden by default, only shown when state is clicked */
+      max-width: 300px;
+      /* Optional: Set max width */
+      max-height: 400px;
+      /* Optional: Set max height */
+      overflow-y: auto;
+      /* Allow scrolling if the content exceeds the height */
     }
 
 
 
-    .district-list,
-    .urban-list {
-      width: 50%;
+    .district-list {
       padding-right: 10px;
+      /* Add padding to prevent content touching edge */
     }
 
-    .district-list h3,
-    .urban-list h3 {
-      margin-top: 0;
-      font-size: 1.1em;
+
+    /* Table-like Styles for Districts and Areas */
+    .district-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      table-layout: auto;
     }
 
+    .district-table th,
+    .district-table td {
+      border: 1px solid #ddd;
+      padding: 5px;
+      margin-right: 20px;
+      /* text-align: left; */
+    }
+
+    .district-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      color: #0a539a;
+    }
+
+    .district-item {
+      font-weight: bold;
+      color: #0a539a;
+      padding: 8px 0;
+    }
+
+    .area-item {
+      font-style: italic;
+      color: #333;
+    }
+
+    /* Overlay Heading Style */
     .info-overlay h3 {
       margin-top: 0;
+      margin-bottom: 10px;
     }
 
-    .info-overlay ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    /* Responsive Table Layout */
+    @media (max-width: 768px) {
+      .map-container {
+        width: 110%;
+      }
+
+
+
+
+      .district-table th,
+      .district-table td {
+        padding: 5px;
+      }
     }
 
-    .state_count {
-      font-size: 1.2em;
-      color: #fff;
-      padding: 5px;
-      border-radius: 5px;
+    /* State Fill and Hover Effects */
+    .state:hover {
+      fill: #47b4f8 !important;
+      cursor: pointer;
+    }
+
+    .state {
+      fill: #07029c !important;
     }
 
     /* Zone Colors */
@@ -123,17 +144,24 @@
       fill: #ffa8d5;
     }
 
-    /* Hover effect */
-    .state:hover {
-      fill: #47b4f8 !important;
-      cursor: pointer;
-    }
-
-    .state {
-
-      fill: #07029c !important;
+    .dummy-tooltip {
+      position: fixed;
+      z-index: 100000;
+      /* High z-index to appear above everything */
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: none;
+      /* Hidden by default */
+      max-width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      /* Add scroll if content overflows */
     }
   </style>
+
+
 
 </head>
 
@@ -554,6 +582,11 @@
             <div id="info-overlay" class="info-overlay">
               <h3 id="state-name"></h3>
               <ul id="region-list"></ul>
+            </div>
+
+            <div class="dummy-tooltip">
+              <!-- style="display: none; position: absolute; background: rgba(0, 0, 0, 0.9); color: white; padding: 10px; border-radius: 5px; z-index: 1000;"> -->
+              <!-- District and Area details will populate here -->
             </div>
           </div>
         </div>
@@ -1016,222 +1049,251 @@
   <script src="js/iwascripts.js"></script>
 
   <script>
+    // Access the pre-created tooltip
+    const tooltip = document.querySelector(".dummy-tooltip");
+
+    function populateTooltip(stateName, districts) {
+      // Clear existing content
+      tooltip.innerHTML = '';
+
+      // Add a header with state name
+      const header = document.createElement("div");
+      header.style.backgroundColor = "#4a90e2";
+      header.style.color = "white";
+      header.style.padding = "10px";
+      header.style.textAlign = "center";
+      header.style.fontWeight = "bold";
+      header.style.fontSize = "16px";
+      header.textContent = stateName;
+      tooltip.appendChild(header);
+
+      // Add a subheading for "Districts"
+      const subheading = document.createElement("h3");
+      subheading.textContent = "Districts and Areas";
+      subheading.style.margin = "10px 0 5px";
+      subheading.style.textAlign = "center";
+      subheading.style.fontSize = "14px";
+      tooltip.appendChild(subheading);
+
+      // Create table for districts and areas
+      const table = document.createElement("table");
+      table.style.width = "100%";
+      table.style.borderCollapse = "collapse";
+
+      // Add header row
+      const headerRow = document.createElement("tr");
+      headerRow.innerHTML = `
+        <th style="border-bottom: 1px solid white; padding: 5px;">District</th>
+        <th style="border-bottom: 1px solid white; padding: 5px;">Areas</th>
+      `;
+      table.appendChild(headerRow);
+
+      // Populate table rows with district and area data
+      districts.forEach(district => {
+        const row = document.createElement("tr");
+
+        const districtCell = document.createElement("td");
+        districtCell.style.padding = "5px";
+        districtCell.style.borderBottom = "1px solid #ddd";
+        districtCell.textContent = district.name;
+
+        const areasCell = document.createElement("td");
+        areasCell.style.padding = "5px";
+        areasCell.style.borderBottom = "1px solid #ddd";
+        areasCell.textContent = district.areas.join(", ");
+
+        row.appendChild(districtCell);
+        row.appendChild(areasCell);
+        table.appendChild(row);
+      });
+
+      tooltip.appendChild(table);
+    }
+
+    // Fetch data from stateData.json
+    fetch('stateData.json')
+      .then(response => response.json())
+      .then(data => {
+        Object.keys(data).forEach(stateId => {
+          const stateElement = document.getElementById(stateId);
+          if (stateElement) {
+            stateElement.classList.add("state");
+
+            // Show tooltip on click or hover
+            const showTooltip = (event) => {
+              event.stopPropagation();
+              const state = data[stateId];
+              populateTooltip(state.name, state.districts);
+
+              // Position tooltip near mouse click
+              const mapContainer = document.querySelector(".map-container");
+              const containerRect = mapContainer.getBoundingClientRect();
+              const mouseX = event.clientX - containerRect.left;
+              const mouseY = event.clientY - containerRect.top;
+
+              // Set initial tooltip position
+              tooltip.style.left = `${mouseX + 20}px`;
+              tooltip.style.top = `${mouseY + 10}px`;
+              tooltip.style.display = "block";
+
+              // Adjust tooltip position if it goes outside map-container bounds
+              const tooltipRect = tooltip.getBoundingClientRect();
+              const rightEdge = containerRect.right - tooltipRect.width;
+              const bottomEdge = containerRect.bottom - tooltipRect.height;
+
+              if (tooltipRect.right > containerRect.right) {
+                tooltip.style.left = `${Math.min(mouseX - tooltipRect.width - 20, rightEdge - containerRect.left)}px`;
+              }
+
+              if (tooltipRect.bottom > containerRect.bottom) {
+                tooltip.style.top = `${Math.min(mouseY - tooltipRect.height - 10, bottomEdge - containerRect.top)}px`;
+              }
+            };
+
+            // Hide tooltip on click outside
+            const hideTooltip = (event) => {
+              if (!tooltip.contains(event.target) && !stateElement.contains(event.target)) {
+                tooltip.style.display = "none";
+                tooltip.classList.remove("pinned");  // Remove 'pinned' class
+                document.removeEventListener("click", hideTooltip);
+              }
+            };
+
+            // Add event listeners for hover and click
+            stateElement.addEventListener("mouseenter", showTooltip);
+            stateElement.addEventListener("mouseleave", () => {
+              if (!tooltip.classList.contains("pinned")) {
+                tooltip.style.display = "none";
+              }
+            });
+            stateElement.addEventListener("click", (event) => {
+              event.stopPropagation();
+              tooltip.classList.add("pinned");  // Add a 'pinned' class to keep tooltip visible
+              showTooltip(event);
+              document.addEventListener("click", hideTooltip);
+            });
+          }
+        });
+      })
+      .catch(error => console.error('Error fetching state data:', error));
+  </script>
+
+
+
+
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const stateData = {
-        // North Zone
-        "INJK": {
-          name: "Jammu and Kashmir",
-          districts: [{ name: "Poonch", areas: ["Sanai", "Surankot"] }],
-          urbanAreas: ["Jammu City"]
-        },
-        "INPB": {
-          name: "Punjab",
-          districts: [{ name: "Ludhiana", areas: ["Ludhiana (Not Village name)"] }],
-          urbanAreas: ["Amritsar", "Patiala"]
-        },
-        "INHR": {
-          name: "Haryana",
-          districts: [{ name: "Mewat", areas: ["Bichore"] }],
-          urbanAreas: ["Gurgaon", "Faridabad"]
-        },
-        "INDL": {
-          name: "Delhi",
-          districts: [{ name: "Central Delhi", areas: ["Dariyaganj"] }],
-          urbanAreas: ["Connaught Place", "Chandni Chowk"]
-        },
-        "INUT": {
-          name: "Uttarakhand",
-          districts: [{ name: "Udam Singh Nagar", areas: ["Darau", "Kuraiya"] }],
-          urbanAreas: ["Dehradun", "Haridwar"]
-        },
-        "INUP": {
-          name: "Uttar Pradesh",
-          districts: [
-            { name: "Rampur", areas: ["Rampur", "Bareilly", "Pilibhit", "Hathras"] },
-            { name: "Lucknow", areas: ["Aishbag", "Imambara", "Alambagh", "Jalalabad", "Nawabganj"] }
-          ],
-          urbanAreas: ["Kanpur", "Agra", "Varanasi", "Meerut"]
-        },
-
-        // East Zone
-        "INBR": {
-          name: "Bihar",
-          districts: [
-            { name: "Kishanganj", areas: ["Mariya", "Bavan Basthi"] },
-            { name: "Gaya", areas: ["Gaya City"] },
-            { name: "Madhubani", areas: ["Bas Beriya", "Bakariyya"] },
-            { name: "Katihar", areas: ["Jahanjahpur"] },
-            { name: "Purnia", areas: ["Barsoi"] }
-          ],
-          urbanAreas: ["Patna", "Bhagalpur", "Muzaffarpur"]
-        },
-        "INJH": {
-          name: "Jharkhand",
-          districts: [{ name: "Cooda", areas: ["Urban Block"] }],
-          urbanAreas: ["Ranchi", "Dhanbad"]
-        },
-        "INOR": {
-          name: "Odisha",
-          districts: [
-            { name: "Jagatsinghapur", areas: ["Jagatsingapur"] },
-            { name: "Jajpur", areas: ["Korai"] },
-            { name: "Bhadrak", areas: ["Bhadrak"] },
-            { name: "Balasore", areas: ["Balasor"] },
-            { name: "Puri", areas: ["Puri City"] }
-          ],
-          urbanAreas: ["Bhubaneswar", "Cuttack"]
-        },
-        "INWB": {
-          name: "West Bengal",
-          districts: [
-            { name: "Malda", areas: ["Samsi"] },
-            { name: "Birbhum", areas: ["Manjikhanda"] },
-            { name: "Darjeeling", areas: ["Lebong"] },
-            { name: "Alipurduar", areas: ["Chaniyabasthi"] },
-            { name: "Uttar Dinajpur", areas: ["Islampur", "Kokobasthi"] },
-            { name: "Purulia", areas: ["Harigram"] },
-            { name: "North 24 Parganas", areas: ["Suraj Colony", "Lenin Colony"] },
-            { name: "Siliguri", areas: ["Fulbari", "Golpukur"] },
-            { name: "Jalpaiguri", areas: ["Agu Rasiya"] }
-          ],
-          urbanAreas: ["Kolkata", "Howrah"]
-        },
-        "INAS": {
-          name: "Assam",
-          districts: [{ name: "Karimganj", areas: ["Karimganj City"] }, { name: "Nalbari", areas: ["Nilbari"] }],
-          urbanAreas: ["Guwahati", "Silchar"]
-        },
-        "INMN": {
-          name: "Manipur",
-          districts: [
-            { name: "Jiribam", areas: ["Jiribam Village"] },
-            { name: "Imphal West", areas: ["Aglapur", "Chandranathpur"] }
-          ],
-          urbanAreas: ["Imphal"]
-        },
-        "INTR": {
-          name: "Tripura",
-          districts: [{ name: "Sepahijala", areas: ["Bishalgarh"] }],
-          urbanAreas: ["Agartala"]
-        },
-
-        // West Zone
-        "INGJ": {
-          name: "Gujarat",
-          districts: [{ name: "West Gujarat", areas: ["Rajkot", "Bhavnagar"] }],
-          urbanAreas: ["Ahmedabad", "Surat", "Vadodara"]
-        },
-        "INRJ": {
-          name: "Rajasthan",
-          districts: [
-            { name: "Ajmer", areas: ["Kayampura", "Kayad"] },
-            { name: "Barmer", areas: ["Gadra Road", "Jaisindhar"] }
-          ],
-          urbanAreas: ["Jaipur", "Udaipur", "Jodhpur"]
-        },
-
-        // South Zone
-        "INKA": {
-          name: "Karnataka",
-          districts: [
-            { name: "Bangalore Urban District", areas: ["Halasuru"] },
-            { name: "Kolar", areas: ["Kolar Town"] }
-          ],
-          urbanAreas: ["Bengaluru", "Mysore"]
-        },
-        "INKL": {
-          name: "Kerala",
-          districts: [
-            { name: "Kollam", areas: ["Mayyithumkara"] },
-            { name: "Idukki", areas: ["Idukki Town"] },
-            { name: "Wayanad", areas: ["Wayanad Village"] },
-            { name: "Thiruvananthapuram", areas: ["Peringamala"] }
-          ],
-          urbanAreas: ["Kochi", "Thiruvananthapuram"]
-        },
-        "INTN": {
-          name: "Tamil Nadu",
-          districts: [
-            { name: "Kanyakumari", areas: ["Kanyakumari City"] },
-            { name: "Coimbatore", areas: ["Pollachi"] }
-          ],
-          urbanAreas: ["Chennai", "Madurai", "Tiruchirappalli"]
-        }
-      };
-
-
       const overlay = document.querySelector(".info-overlay");
       const districtListContainer = document.createElement("div");
-      const urbanListContainer = document.createElement("div");
 
       districtListContainer.classList.add("district-list");
-      urbanListContainer.classList.add("urban-list");
-
       overlay.appendChild(districtListContainer);
-      overlay.appendChild(urbanListContainer);
 
-      function showInfo(stateName, districts, urbanAreas) {
+      // Function to show districts and areas of a state
+      function showStateDetails(stateName, districts) {
+        overlay.style.display = "block"; // Show overlay
         districtListContainer.innerHTML = `<h3>${stateName} - Districts</h3>`;
-        urbanListContainer.innerHTML = `<h3>${stateName} - Urban Areas</h3>`;
 
-        const districtList = document.createElement("ul");
+        // Create a table to organize districts and areas
+        const table = document.createElement("table");
+        table.classList.add("district-table");
+
+        // Add header row to the table
+        const headerRow = document.createElement("tr");
+        headerRow.innerHTML = `
+          <th>District</th>
+          <th>Areas</th>
+        `;
+        table.appendChild(headerRow);
+
+        // Populate table with district and area data
         districts.forEach(district => {
-          const districtItem = document.createElement("li");
-          districtItem.innerHTML = `<strong>${district.name}</strong>`;
+          const districtRow = document.createElement("tr");
+          const districtCell = document.createElement("td");
+          districtCell.classList.add("district-item");
+          districtCell.textContent = district.name;
 
-          const areaList = document.createElement("ul");
-          district.areas.forEach(area => {
-            const areaItem = document.createElement("li");
-            areaItem.textContent = area;
-            areaList.appendChild(areaItem);
-          });
+          // Create a cell for areas, separating them by commas
+          const areasCell = document.createElement("td");
+          areasCell.classList.add("area-item");
+          areasCell.textContent = district.areas.join(", ");
 
-          districtItem.appendChild(areaList);
-          districtList.appendChild(districtItem);
-          districtItem.innerHTML += '</br>';
+          // Append cells to row
+          districtRow.appendChild(districtCell);
+          districtRow.appendChild(areasCell);
+          table.appendChild(districtRow);
         });
-        districtListContainer.appendChild(districtList);
 
-        const urbanList = document.createElement("ul");
-        urbanAreas.forEach(area => {
-          const urbanItem = document.createElement("li");
-          urbanItem.textContent = area;
-          urbanList.appendChild(urbanItem);
-        });
-        urbanListContainer.appendChild(urbanList);
-
-        overlay.style.display = "block";
+        districtListContainer.appendChild(table);
       }
 
-      function hideInfo() {
-        overlay.style.display = "block";
+      // Hide overlay on clicking outside
+      function hideOverlay(event) {
+        if (!overlay.contains(event.target)) {
+          overlay.style.display = "none";
+          districtListContainer.innerHTML = ''; // Clear content
+          document.removeEventListener("click", hideOverlay);
+        }
       }
 
-      // Fetch data from stateData.json and use it in your application
+      // Fetch data from stateData.json
       fetch('stateData.json')
-        .then(response => response.json())  // Parse JSON response
+        .then(response => response.json())
         .then(data => {
-          // Now `data` contains the parsed JSON from stateData.json
           Object.keys(data).forEach(stateId => {
             const stateElement = document.getElementById(stateId);
             if (stateElement) {
               stateElement.classList.add("state");
 
-              // Event listeners for displaying and hiding information
-              stateElement.addEventListener("mouseenter", () => {
+              // Show details on click
+              stateElement.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevent event from triggering hideOverlay
                 const state = data[stateId];
-                showInfo(state.name, state.districts, state.urbanAreas);
-              });
+                showStateDetails(state.name, state.districts);
 
-              stateElement.addEventListener("mouseleave", hideInfo);
+                document.addEventListener("click", hideOverlay); // Close on outside click
+              });
             }
           });
         })
         .catch(error => console.error('Error fetching state data:', error));
 
-    });
-  </script>
+      // Hover effect - update overlay position based on mouse movement
+      document.addEventListener("mousemove", function (event) {
+        const OFFSET = 20;  // Adjust this value for a fixed offset from the mouse pointer
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
 
+        // Set the left position of the overlay based on the mouse's position with an offset
+        overlay.style.left = `${mouseX + OFFSET}px`;
+        overlay.style.top = `${mouseY + 10}px`; // Slight offset to prevent overlap with mouse
+
+        // Ensure the overlay stays within the viewport (adjust right position if too far)
+        const maxLeft = window.innerWidth - overlay.offsetWidth - 10; // 10px margin
+        if (parseInt(overlay.style.left) > maxLeft) {
+          overlay.style.left = `${maxLeft}px`; // Adjust left if it overflows
+        }
+
+        // Ensure the overlay stays within the viewport vertically as well
+        const maxTop = window.innerHeight - overlay.offsetHeight - 10; // 10px margin
+        if (parseInt(overlay.style.top) > maxTop) {
+          overlay.style.top = `${maxTop}px`; // Adjust top if it overflows
+        }
+      });
+
+      // Show overlay on click (also hide on clicking outside)
+      document.addEventListener("click", function (event) {
+        const stateName = "State Name"; // Set state name dynamically
+        const districts = []; // Populate districts data dynamically
+
+        // Show the state details (function you already have)
+        showStateDetails(stateName, districts);
+
+        // Add outside click event to hide the overlay
+        document.addEventListener("click", hideOverlay);
+      });
+    });
+  </script> -->
 
 </body>
 
