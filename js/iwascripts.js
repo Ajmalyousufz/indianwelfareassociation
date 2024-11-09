@@ -215,26 +215,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
             recentBlogs.forEach(blog => {
                 const blogHTML = `
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html?id=${blog.id}" class="block-20" style="background-image: url('${blog.image}');"></a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#"><span class="icon-calendar"></span> ${blog.date}</a></div>
-                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> ${blog.comment_count || 0}</a></div>
-              </div>
-              <h3 class="heading mt-3"><a href="blog-single.html?id=${blog.id}">${blog.title}</a></h3>
-              <p>${blog.description}</p>
-            </div>
-          </div>
-        </div>
-      `;
+                    <div class="col-md-4 d-flex ftco-animate">
+                      <div class="blog-entry align-self-stretch" data-href="blog-single.html?id=${blog.id}">
+                        <a href="blog-single.html?id=${blog.id}" class="block-20" style="background-image: url('${blog.image}');"></a>
+                        <div class="text p-4 d-block">
+                          <div class="meta mb-3">
+                            <div><a href="#"><span class="icon-calendar"></span> ${blog.date}</a></div>
+                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> ${blog.comment_count || 0}</a></div>
+                          </div>
+                          <h3 class="heading mt-3"><a href="blog-single.html?id=${blog.id}">${blog.title}</a></h3>
+                          <p>${blog.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                `;
                 container.innerHTML += blogHTML;
+            });
+
+            // Add click event listeners to newly added `.blog-entry` elements
+            document.querySelectorAll('.blog-entry').forEach(entry => {
+                entry.addEventListener('click', () => {
+                    window.location.href = entry.getAttribute('data-href');
+                });
             });
         })
         .catch(error => console.error('Error loading JSON:', error));
 });
+
+
 
 //3.blog event loading on intex.html     end
 
@@ -302,7 +311,7 @@ fetch('event_json.json')
             // Construct the HTML for the event
             const eventHTML = `
     <div class="col-md-4 d-flex ftco-animate">
-      <div class="blog-entry align-self-stretch" style="position: relative;">
+      <div  class="blog-entry align-self-stretch" style="position: relative;"  data-href="event-single.html?id=event${event.id}">
         <a href="event-single.html?id=event${event.id}" class="block-20" style="background-image: url('${event.image_url}');">
         </a>
         <div style="${bannerStyle}">${bannerText}</div>
@@ -397,7 +406,7 @@ function sendEmail() {
     const body = encodeURIComponent(`Name: ${userName}\nEmail: ${userEmail}\nMessage: ${message}`);
 
     // Open user's default mail client with pre-filled information
-    window.location.href = `mailto:ajmalyousufza@gmail.com?subject=${encodedSubject}&body=${body}`;
+    window.location.href = `mailto:iwaindiafoundation@gmail.com?subject=${encodedSubject}&body=${body}`;
 }
 
 

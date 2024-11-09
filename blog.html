@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Welfare - Free Bootstrap 4 Template by Colorlib</title>
+  <title>IWA - Blog</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -55,7 +55,7 @@
       <div class="row d-flex">
         <div class="row" id="blog-container"></div>
       </div>
-      <div class="row mt-5">
+      <!-- <div class="row mt-5">
         <div class="col text-center">
           <div class="block-27">
             <ul>
@@ -69,7 +69,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -187,7 +187,7 @@
 
         })
         .catch(error => console.log("Error loading footbar : ", error));
-        
+
       fetch("valuenteer_banner.html")
         .then(response => response.text())
         .then(data => {
@@ -209,7 +209,7 @@
           console.log(`blog.title : ${blog.title}`);
 
           let programmeHTML = `<div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry align-self-stretch">
+          	<div class="blog-entry align-self-stretch" data-href="blog-single.html?id=${blog.id}">
               <a href="blog-single.html?id=${blog.id}" class="block-20" style="background-image: url('${blog.image}');">
               </a>
               <div class="text p-4 d-block">
@@ -226,6 +226,12 @@
                                </div>
                                    </div>`;
           container.innerHTML += programmeHTML;
+        });
+        // Add click event listeners to newly added `.blog-entry` elements
+        document.querySelectorAll('.blog-entry').forEach(entry => {
+          entry.addEventListener('click', () => {
+            window.location.href = entry.getAttribute('data-href');
+          });
         });
       })
       .catch(error => {

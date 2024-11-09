@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Welfare - Free Bootstrap 4 Template by Colorlib</title>
+  <title>IWA - Events</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -254,7 +254,7 @@
             // Construct the HTML for the event
             const eventHTML = `
   <div class="col-md-4 d-flex ftco-animate">
-    <div class="blog-entry align-self-stretch" style="position: relative;">
+    <div class="blog-entry align-self-stretch" style="position: relative;" data-href="event-single.html?id=event${event.id}">
       <a href="event-single.html?id=event${event.id}" class="block-20" style="background-image: url('${event.image_url}');">
       </a>
       <div style="${bannerStyle} position: absolute; top: 10px; left: 10px;">${bannerText}</div>
@@ -267,15 +267,21 @@
         <h3 class="heading mb-4"><a href="blog-single.html?id=event${event.id}">${event.title}</a></h3>
         <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i>${event.time}</span> <span><i class="icon-map-o"></i>${event.location}</span></p>
         <p>${event.short_description}</p>
-        <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
       </div>
     </div>
   </div>
 `;
 
+            // <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
 
             // Insert the event HTML into the container
             container.innerHTML += eventHTML;
+          });
+          // Add click event listeners to newly added `.blog-entry` elements
+          document.querySelectorAll('.blog-entry').forEach(entry => {
+            entry.addEventListener('click', () => {
+              window.location.href = entry.getAttribute('data-href');
+            });
           });
         })
         .catch(error => console.error('Error loading events:', error));
